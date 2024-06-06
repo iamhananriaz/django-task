@@ -5,7 +5,7 @@ import random
 
 fake = Faker()
 class Command(BaseCommand):
-    help = 'Generates fake Users and Profile'
+
     def handle(self, *args, **option):
         for _ in range(10):
             u = User.objects.create(
@@ -15,7 +15,7 @@ class Command(BaseCommand):
             Profile.objects.create(
                 user = u,
                 role = u,
-                phone_no = '+',
+                phone_no = '090078601',
             )    
         self.stdout.write(self.style.SUCCESS('Fake User Profile generated.'))
  

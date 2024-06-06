@@ -15,7 +15,7 @@ class Command(BaseCommand):
             Profile.objects.create(
                 user = u,
                 role = u,
-                phone_no = '090078601',
+                phone_no = '+',
             )    
         self.stdout.write(self.style.SUCCESS('Fake User Profile generated.'))
  

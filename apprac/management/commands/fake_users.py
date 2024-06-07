@@ -16,5 +16,5 @@ class Command(BaseCommand):
                 role = u,
                 phone_no = '+',
             )    
-        # u = Profile.objects.all().count()
-        # self.stdout.write("It's -------now %s" % u)
+        u = Profile.objects.all().count()
+        self.stdout.write("It's -------now %s" % u)

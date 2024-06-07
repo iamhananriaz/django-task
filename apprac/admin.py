@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Profile, User
+from .models import *
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core import management
+from django_object_actions import DjangoObjectActions, action
 from django.urls import path
 
 
@@ -36,3 +37,16 @@ admin.site.register(Profile, ProfileAdmin)
 admin.site.register(User, UserAdmin)
 
 
+class infoAdmin(DjangoObjectActions, admin.ModelAdmin):
+
+    def change_about(self, request, obj):
+        if not obj.about:
+            obj.about="Who are you?"
+        else: 
+            obj.about=""
+        obj.save()
+
+    change_actions = ("change_about",)
+
+
+admin.site.register(info, infoAdmin)

@@ -1,8 +1,11 @@
 from django.contrib import admin
 from .models import *
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.core import management
 from django.urls import path
+from django_object_actions import DjangoObjectActions, action
+
 
 
 @admin.register(Post)
@@ -45,6 +48,11 @@ admin.site.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ['title', 'content', 'pub_date']
         
+
+
+
+
+
 
 
 

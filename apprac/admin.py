@@ -1,12 +1,10 @@
 from django.contrib import admin
-from .models import User, Profile
+from .models import Profile, User
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.core import management
 from django.urls import path
 
-class UserAdmin(admin.ModelAdmin):
-    change_list_template = "admin/profile_change_list.html"
-    list_display = ['name', 'active']
 
     
 class ProfileAdmin(admin.ModelAdmin):
@@ -14,8 +12,10 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'role', 'phone_no']
 
     def fake_data(self, request):
-       success = management.call_command("fake_user_profile")
+       print("1st")
+       success = management.call_command("fake_users")
        return HttpResponseRedirect("../")
+
       
     def get_urls(self):
        urls = super().get_urls()
@@ -28,6 +28,11 @@ class ProfileAdmin(admin.ModelAdmin):
        ]
        return custom_urls + urls
 
+class UserAdmin(admin.ModelAdmin):
+   list_display = ["name", "active"]
+
 
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(User, UserAdmin)
+
 

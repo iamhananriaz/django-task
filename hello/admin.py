@@ -40,41 +40,13 @@ class QualityAdmin(admin.ModelAdmin):
     def make_bad(self, request, queryset):
         queryset.update(is_good = False)
 
-class PhoneNumberFilter(admin.SimpleListFilter):
-    title = 'Phone Number'
-    parameter_name = 'phone_no'
 
-    def lookups(self, request, model_admin):
-        return (
-            ('+9230', '+9230'),
-            ('+9231', '+9231'),
-            ('+9232', '+9232'),
-            ('+9233', '+9233'),
-            ('+9234', '+9234'),
-        )
-
-    def queryset(self, request, queryset):
-        value = self.value()
-        if value:
-            return queryset.filter(phone_no__startswith=value)
+admin.site.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'content', 'pub_date']
         
 
-admin.site.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    change_list_template = "admin/change_list.html"
-    list_display = ['user', 'email', 'phone_number']
 
-    def fake_data(self, request):
-       success = management.call_command("fake_user_profile")
-       return HttpResponseRedirect("../")
-      
-    def get_urls(self):
-       urls = super().get_urls()
-       custom_urls = [
-           path(
-               "fake_data/",
-               self.fake_data,
-               name = 'fake_data'
-           )
-       ]
-       return custom_urls + urls
+
+    
+    

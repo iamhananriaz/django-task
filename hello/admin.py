@@ -44,9 +44,6 @@ class QualityAdmin(admin.ModelAdmin):
         queryset.update(is_good = False)
 
 
-admin.site.register(BlogPost)
-class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'content', 'pub_date']
         
 
 

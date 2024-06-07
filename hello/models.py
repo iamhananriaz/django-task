@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User 
 
 class Student(models.Model):
@@ -56,14 +55,4 @@ class Profile(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone_number = models.CharField(max_length=30)
-
-class BlogPost(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    pub_date = models.DateTimeField('date published', default=timezone.now)
-
-    def __str__(self):
-        return self.title
-    
-    
 

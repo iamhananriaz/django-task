@@ -1,13 +1,11 @@
 from django.contrib import admin
 from .models import *
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse
 from django.core import management
 from django_object_actions import DjangoObjectActions, action
 from django.urls import path
 
 
-    
 class ProfileAdmin(admin.ModelAdmin):
     change_list_template = "admin/profile_change_list.html"
     list_display = ['user', 'role', 'phone_no']

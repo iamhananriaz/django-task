@@ -1,0 +1,13 @@
+admin.site.register(Profile)
+class ProfileAdmin(DjangoObjectActions, admin.ModelAdmin):
+    change_list_template = "admin/profile_change_list.html"
+    list_display = ['user', 'role', 'phone_no']
+
+    # @action(label="Delete", description="delete this user")
+    def delete_user(self, request, obj):
+        print("instance: ", obj)
+        return None
+
+    delete_user.label = "Delete user"
+    change_actions = ('delete_user', )
+    # changelist_actions = ('...', )

@@ -6,15 +6,12 @@ from django.shortcuts import render
 from django.contrib import admin
 app_name = "hello"
 
-urlpatterns = [
-    path('registration/', views.showformdata , name = "dealerurl"),
-]
+
+from .views import signup, home , blog
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
+    path('', home, name='home'),
+    path('signup/', signup , name = "SignUpForm"),
+    path('blogs/', blog , name = "Blogs")
 ]
-
-def custom_404_view(request, exception):
-    return render(request, '404.html', status=404)
-
-handler404 = 'hello.urls.custom_404_view'

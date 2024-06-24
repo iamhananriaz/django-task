@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'hello',
     'apprac',
     'django_object_actions',
-    'blog_Web'
+    'blog_Web',
+    'polls'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'hello.middleware.ExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'web_App.urls'

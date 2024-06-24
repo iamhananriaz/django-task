@@ -1,20 +1,26 @@
-from django.shortcuts import render , redirect
-from .forms import DealerForm
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
-from .models import Dealer
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from .forms import SignUpForm
 
 
-def home(request):
-    return HttpResponse("yo")
-
-def showformdata(request):
-    if request.method == "GET":
-        sf=DealerForm()
-        return render(request, 'forms/registration.html', {'form':sf})
-    elif request.method == "POST":
-        form = DealerForm(request.POST)
+def signup(request):
+    if request.method == 'post':
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-    return redirect("hello:dealerurl")
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'forms/SignUpForm.html', {'form': form})
+
+def home(request):
+    return render(request, 'home.html')
+
+def blog(request):
+    return render(request, 'blogs.html')

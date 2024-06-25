@@ -1,13 +1,17 @@
 from django.urls import path
 from . import views
 from django.urls import path
+from django.conf.urls import handler404
+from django.shortcuts import render
 from django.contrib import admin
 app_name = "hello"
 
-urlpatterns = [
-    path('registration/', views.showformdata , name = "dealerurl"),
-]
+
+from .views import signup, home , blog
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
+    path('', home, name='home'),
+    path('signup/', signup , name = "SignUpForm"),
+    path('blogs/', blog , name = "Blogs")
 ]

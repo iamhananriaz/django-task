@@ -1,18 +1,19 @@
-# from django.http import HttpResponse
+class testmiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
 
-# class ExceptionMiddleware(object):
-#     def __init__(self, get_response):
-#         self.get_response = get_response
+    def __call__(self, request):
+        print('Before view')
 
-#     def __call__(self, request):
-#         return self.get_response(request)
-
-#         user_agent = request.META.get('HTTP_USER_AGENT')
+        response = self.get_response(request)
         
-#         print('###')
-#         print(user_agent)
-#         print('##')
+        print('After view')
 
-#     def process_exception(self, request, exception): 
-#         print("----working--------")
-#         return HttpResponse("in exception")
+        return response
+    # def __init__(self, get_response):
+    #     self.get_response = get_response
+
+    # def __call__(self, request):
+    #     response = self.get_response(request)
+    #     response['X-Custom-Header'] = 'My Custom Value'
+    #     return response

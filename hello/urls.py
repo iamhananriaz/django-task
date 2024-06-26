@@ -12,6 +12,5 @@ from .views import signup, home , blog
 urlpatterns = [
 
     path('', home, name='home'),
-    path('signup/', signup , name = "SignUpForm"),
-    path('blogs/', blog , name = "Blogs")
+
 ]

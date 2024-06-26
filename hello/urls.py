@@ -7,7 +7,7 @@ from django.contrib import admin
 app_name = "hello"
 
 
-from .views import signup, home , blog
+from .views import home 
 
 urlpatterns = [
 

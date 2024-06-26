@@ -1,18 +1,47 @@
+{% extends "base.html" %}
+{% block start %}
+<a href="/about">
+    About
+</a>
+|
+<a href="/contact">
+    Contact
+</a>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-</head>
+<style>
+    table, th, tr {
+        border: 1px solid black;
+    }
+</style>
 <body>
     <h2>Home Page</h2>
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.username }}!</p>
+        <p> Here is the list of avengers,</p>
+        <table>
+            <tr>
+              <th>Sr. No.</th>  
+              <th>Name</th>
+              <th>Location </th>
+            </tr>
+            {% for people in people %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{people.name}}</td>
+              <td>{{people.location}}</td>
+            </tr>
+            {% endfor %}
+ 
+          </table>
         <a href="{% url 'logout' %}">Logout</a>
+        
     {% else %}
+
         <a href="{% url 'login' %}">Login</a> | 
         <a href="{% url 'signup' %}">Sign Up</a>
-        <a href="http://127.0.0.1:8000/blogs/">Blogs</a> 
+       
     {% endif %}
 </body>
 </html>
+
+{% endblock %}

@@ -8,6 +8,7 @@ from django.contrib import messages
 
 
 
+
 def custom_login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -43,3 +44,4 @@ def signup(request):
 def custom_logout(request):
     logout(request)
     return redirect('/home')
+

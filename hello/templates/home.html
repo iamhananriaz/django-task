@@ -1,13 +1,18 @@
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Home</title>
 </head>
 <body>
-    <h1>Hello!</h1>
-    <P>You are not logged In</P>
-    <h3>Sign Up Now</h3>
-
-    <a href="http://127.0.0.1:8000/signup/">Sign Up</a>
-    <a href="http://127.0.0.1:8000/blogs/">Blogs</a> 
+    <h2>Home Page</h2>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> | 
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="http://127.0.0.1:8000/blogs/">Blogs</a> 
+    {% endif %}
 </body>
 </html>
